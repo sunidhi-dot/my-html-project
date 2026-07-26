@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" width="400px" alt="no image">
+
+    <img src="html.source.png" width="400px" alt="no image">
+    <picture>
+        <source media="(min-width: 650px)" srcset="html.source.png"/>
+        <source media="(min-width: 460px)" srcset="html.source2.png"/>
+        <img src="html.source.png" alt="">
+    </picture>
+
+    <!-- an image map generator -->
+
+    <img src="html.source.png" usemap="#image-map">
+
+<map name="image-map">
+    <area onclick="one()" target="" alt="" title="" href="" coords="224,36,284,81" shape="rect">
+    <area onclick="two()" target="" alt="" title="" href="" coords="16,50,88,78" shape="0">
+</map>
+
+<script>
+    function one() {
+        alert("You clicked on one")
+    }
+    function two() {
+        alert("You clicked on two")
+    }
+</script>
+
+</body>
+</html>
