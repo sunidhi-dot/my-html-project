@@ -172,14 +172,19 @@ Tag     	=>    Purpose
 <source src="" type="">
 </video>
 
+// Global Attributes
+<id></id>
+<class></class>
+
 // HTML Entities
 
-Entity	  =>    Output
-&lt;	  =>    <
-&gt;	  =>    >
-&amp;	  =>    &
-&copy;	  =>    ©
-&nbsp;	  =>    Space
+Entity	      =>    Output	       =>       Meaning
+&lt;	        =>      <	           =>       Less than
+&gt;	        =>      >	           =>       Greater than
+&amp;	        =>    	©	           =>       Copyright
+&nbsp;	      =>   (space)	       =>         Non-breaking space
+&quot;        =>    	"	           =>       Double quotation mark
+&apos;        =>    	'	           =>      Apostrophe
 
 // HTML5 Features
 
@@ -191,3 +196,32 @@ SVG graphics
 Local storage
 Geolocation API
 Drag and Drop
+
+// Difference between HTML and HTML5
+
+HTML	                                                        HTML5
+Older version of HTML                                 	 Latest version of HTML.
+Limited multimedia support                            	 Built-in support for audio and video.
+No semantic elements like <header> and <footer>        	 Introduced semantic elements.
+Required external plugins (like Flash) for multimedia  	 No external plugins needed for multimedia.
+Limited APIs                                        	   Supports APIs like Geolocation, Canvas, Local Storage, Drag & Drop.
+
+// Difference between id and class
+
+id	                                       class
+Used for one unique element           Used for one or many elements.
+Must be unique in a page              Can be repeated.
+Written as id="name"	                Written as class="name"
+CSS selector uses #                   CSS selector uses ..
+// Example =>  <h1 id="title">Welcome</h1>
+               <p class="text">Paragraph 1</p>
+               <p class="text">Paragraph 2</p>
+
+// difference between <b> and <strong>
+
+<b>	                                            <strong>
+Makes text bold only.                  	Makes text bold and indicates importance.
+No semantic meaning.	                  Has semantic meaning.
+Used mainly for visual styling.         Used for important content.
+// Example => <p><b>Bold Text</b></p>
+<p><strong>Important Warning!</strong></p>
