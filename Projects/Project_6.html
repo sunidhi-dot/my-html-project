@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Website</title>
+     <style>
+        table {
+             width: 50%;
+             border-collapse: collapse;
+             text-align: center;
+             margin: 20px 0;
+        }
+
+        th,td{
+            border: 1px solid black;
+            padding: 10px;
+        }
+        caption {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+       }
+     </style>
+</head>
+<body>
+    <header>
+        <h1>Spice Garden Restaurant</h1>
+        <h2>Welcome to Our Restaurant</h2>
+        <h3 id="home">Delicious Food, Great Taste, Fresh Ingredients</h3>
+
+        <!-- navigation -->
+         <nav>
+              <a href="#home">Home</a> |
+              <a href="#about">About</a> |
+              <a href="#menu">Menu</a> |
+              <a href="#gallery">Gallery</a> |
+              <a href="#contact">Contact</a> |
+              <a href="#reservation">Reservation</a>
+            </nav>
+
+           <!-- About Section -->
+          
+        <h2 id="about">About Our Restaurant</h2>
+            <P>
+                Spice Garden Restaurant serves fresh and delicious food made with quality ingredients. we offer North Indian, Chinese, and South Indian dishes in a clean and friendly environment.
+             </P>
+    </header>
+
+     <!-- Menu Section -->
+      <h2 id="menu">Menu</h2>
+    <ul>
+        <li>Pizza</li>
+        <li>Burger</li>
+        <li>Biryani</li>
+        <li> Pasta</li>
+        <li>Masala Dosa</li>
+        <li>Cold Coffee</li>
+    </ul>
+
+    <!-- Price List Section -->
+     <h2>Price List</h2>
+    
+     <table>
+        <caption>Restaurant Menu Prices</caption>
+        <tr>
+        <th>Item</th>
+        <th>Price</th>
+        </tr>
+
+       <tr>
+            <td>Pizza</td>
+            <td>₹250</td>
+        </tr>
+        <tr>
+            <td>Burger</td>
+            <td>₹150</td>
+        </tr>
+        <tr>
+            <td>Pasta</td>
+            <td>₹180</td>
+        </tr>
+        <tr>
+            <td>Biryani</td>
+            <td>₹200</td>
+        </tr>
+        <tr>
+            <td>Masala Dosa</td>
+            <td>₹120</td>
+        </tr>
+        <tr>
+            <td>Cold Coffee</td>
+            <td>₹80</td>
+        </tr>
+     </table>
+
+         <!-- Gallery Section -->
+         <h2 id="gallery">Gallery</h2>
+         <p>Some images from our restaurant:</p>
+         <img src="./image1.jpg" alt="Pizza" width="250" height="150">
+         <img src="./images 2.jpg" alt="Burger" width="250" height="150">
+         <img src="./images 3.jpg" alt="Biryani" width="250" height="150">
+
+          <!-- Video Section -->
+           <h2>Video</h2>
+           <video muted controls width="300">
+            <source src="./video1.mp4" type="video/mp4">
+           </video>
+
+             <!-- Contact Section -->
+              <h2 id="contact">Contact Us</h2>
+              <p>
+                Address: 123 Main Street, City: Delhi, State: Delhi, ZIP Code: 110001<br>
+                Contact: <a href="tel:+91-11-12345678">+91 98765 43210</a><br>
+                Email: <a href="mailto:info@spicegarden.com">info@spicegarden.com</a>
+              </p>
+    
+    <!-- Reservation Form -->
+     <h2 id="reservation">Reservation Form</h2>
+
+     <form action="SubmitReservation.php"
+     method="post">
+        
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
+
+    <label for="Phone">Phone:</label>
+    <input type="tel" id="Phone" name="Phone" required>
+    <br><br>
+
+    <label for="Date">Date:</label>
+    <input type="date" id="Date" name="Date" required>
+    <br><br>
+
+    <label for="Time">Time:</label>
+    <input type="time" id="Time" name="Time" required>
+    <br><br>
+
+    <label for="Guests">Number of Guests:</label>
+    <input type="number" id="Guests" name="Guests" min="1" max="20" required>
+    <br><br>
+
+    <input type="submit" value="Submit Reservation">
+</form>
+
+ <footer>
+    &copy; 2026 Spice Garden Restaurant. All rights reserved.
+ </footer>
