@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya Thakur Astrology</title>
+    <link rel="icon" href="images/favicon.png">
+
+    <meta name="description" content="Professional Online & Offline Astrology Consultation by Divya Thakur. Kundli Reading, Love Marriage, Career, Business, Numerology & Vastu Consultation.">
+
+<meta name="keywords" content="Astrologer, Kundli, Vastu, Numerology, Love Marriage, Career Astrology, Divya Thakur Astrology">
+
+<meta name="author" content="Divya Thakur">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body
+
+{
+    background:#071B3B;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background: rgba(7,27,59,0.85);
+    backdrop-filter: blur(10px);
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#D4AF37;
+    font-size:26px;
+    font-weight:700;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+}
+.logo img{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #D4AF37;
+    box-shadow: 0 0 20px rgba(212,175,55,0.5);
+    transition: 0.3s ease;
+}
+
+.logo img:hover{
+    transform: rotate(8deg) scale(1.08);
+    box-shadow: 0 0 30px rgba(212,175,55,0.8);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#D4AF37;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80");
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.65);
+}
+
+.hero-content{
+    position:relative;
+    color:white;
+    max-width:800px;
+    padding:20px;
+}
+
+.hero-content h3{
+    font-size:30px;
+    color:#D4AF37;
+}
+
+.hero-content h1{
+
+font-size:65px;
+
+margin:20px 0;
+
+color:#fff;
+
+text-shadow:
+0 0 10px #D4AF37,
+0 0 20px #D4AF37,
+0 0 40px #D4AF37;
+
+}
+
+.hero-content p{
+    font-size:20px;
+    line-height:35px;
+    margin-bottom:40px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.btn{
+    background:#D4AF37;
+    padding:15px 35px;
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+
+background:white;
+
+color:#071B3B;
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 25px rgba(212,175,55,.5);
+
+}
+
+.btn2{
+    border:2px solid #D4AF37;
+    padding:15px 35px;
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    transition:.3s;
+}
+
+.btn2:hover{
+
+background:#D4AF37;
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 25px rgba(212,175,55,.5);
+
+}
+
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+}
+
+nav ul{
+    margin-top:15px;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero-content h1{
+    font-size:42px;
+}
+
+.hero-content p{
+    font-size:17px;
+    line-height:30px;
+}
+
+.buttons{
+    flex-direction:column;
+}
+
+/*================ ABOUT ================*/
+
+.about{
+    background:#fff;
+    padding:100px 8%;
+}
+
+.about-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.about-image{
+    flex:1;
+}
+
+.about-image img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.about-content{
+    flex:1;
+}
+
+.about-content h4{
+    color:#D4AF37;
+    font-size:22px;
+}
+
+.about-content h2{
+    color:#071B3B;
+    font-size:42px;
+    margin:15px 0;
+}
+
+.about-content p{
+    color:#555;
+    line-height:30px;
+    margin-bottom:20px;
+}
+
+.about-btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#071B3B;
+    color:#fff;
+    text-decoration:none;
+    border-radius:40px;
+    transition:.3s;
+}
+
+.about-btn:hover{
+    background:#D4AF37;
+}
+
+/*================ SERVICES ================*/
+
+.services{
+    background:#071B3B;
+    padding:100px 8%;
+    text-align:center;
+}
+
+.services h4{
+    color:#D4AF37;
+    font-size:22px;
+}
+
+.services h2{
+    color:#fff;
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.service-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#10274f;
+    padding:35px;
+    border-radius:20px;
+    transition:.4s;
+}
+
+.card:hover{
+
+transform:translateY(-12px) scale(1.03);
+
+box-shadow:0 15px 30px rgba(212,175,55,.3);
+
+}
+
+.card i{
+    font-size:45px;
+    color:#D4AF37;
+    margin-bottom:20px;
+}
+
+.card h3{
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#ddd;
+    line-height:28px;
+}
+
+}
+/* WHY US */
+
+.why-us{
+    padding:100px 8%;
+    background:#fff;
+    text-align:center;
+}
+
+.why-us h4{
+    color:#D4AF37;
+}
+
+.why-us h2{
+    color:#071B3B;
+    margin:15px 0 50px;
+    font-size:40px;
+}
+
+.why-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.why-card{
+    background:#f7f7f7;
+    padding:35px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.why-card:hover{
+    transform:translateY(-8px);
+}
+
+.why-card i{
+    font-size:45px;
+    color:#D4AF37;
+    margin-bottom:15px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials{
+    background:#071B3B;
+    color:#fff;
+    text-align:center;
+    padding:100px 8%;
+}
+
+.testimonials h4{
+    color:#D4AF37;
+}
+
+.testimonials h2{
+    margin:15px 0 50px;
+}
+
+.testimonial-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.testimonial{
+    background:#10274f;
+    padding:30px;
+    border-radius:15px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#fff;
+    text-align:center;
+    padding:100px 8%;
+}
+
+.contact h4{
+    color:#D4AF37;
+}
+
+.contact h2{
+    color:#071B3B;
+    margin:15px 0 40px;
+}
+
+.contact-box{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact-box p{
+    font-size:20px;
+    margin:18px 0;
+}
+
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:35px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#071B3B;
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.social{
+    margin:20px 0;
+}
+
+.social a{
+    color:#454340;
+    font-size:30px;
+    margin:0 12px;
+    transition:.3s;
+}
+
+.social a:hover{
+    color:#fff;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    text-decoration:none;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+/* CONTACT FORM */
+
+.contact-form{
+
+padding:100px 8%;
+
+background:#071B3B;
+
+text-align:center;
+
+}
+
+.contact-form h4{
+
+color:#D4AF37;
+
+}
+
+.contact-form h2{
+
+color:white;
+
+margin:15px 0 40px;
+
+}
+
+.contact-form form{
+
+max-width:700px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea{
+
+padding:16px;
+
+border:none;
+
+border-radius:8px;
+
+font-size:17px;
+
+}
+
+.contact-form button{
+
+background:#D4AF37;
+
+padding:16px;
+
+border:none;
+
+border-radius:40px;
+
+font-size:18px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.contact-form button:hover{
+
+background:white;
+
+color:#071B3B;
+
+}
+
+/* FAQ */
+
+.faq{
+
+padding:100px 8%;
+
+background:white;
+
+}
+
+.faq h4{
+
+color:#D4AF37;
+
+text-align:center;
+
+}
+
+.faq h2{
+
+text-align:center;
+
+margin-bottom:40px;
+
+color:#071B3B;
+
+}
+
+.faq-box{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+details{
+
+margin-bottom:20px;
+
+background:#f4f4f4;
+
+padding:18px;
+
+border-radius:10px;
+
+}
+
+summary{
+
+font-size:18px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+/* ========== STARS BACKGROUND ========== */
+
+.stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+    radial-gradient(#fff 1px, transparent 1px),
+    radial-gradient(#D4AF37 1px, transparent 1px);
+    background-size:60px 60px,120px 120px;
+    background-position:0 0,30px 30px;
+    opacity:.12;
+    animation:starsMove 80s linear infinite;
+    pointer-events:none;
+    z-index:-1;
+}
+
+@keyframes starsMove{
+
+from{
+transform:translateY(0);
+}
+
+to{
+transform:translateY(-800px);
+}
+
+}
+.hero-content h1{
+
+animation:fadeUp 1s ease;
+
+}
+
+.hero-content p{
+
+animation:fadeUp 1.5s ease;
+
+}
+
+.buttons{
+
+animation:fadeUp 2s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+.logo{
+
+text-shadow:0 0 12px #D4AF37;
+
+}
+
+.btn{
+
+box-shadow:0 0 18px rgba(212,175,55,.5);
+
+}
+
+.btn:hover{
+
+box-shadow:0 0 30px #D4AF37;
+
+}
+
+.card:hover{
+
+box-shadow:0 0 25px rgba(212,175,55,.35);
+
+}
+.call-btn{
+
+position:fixed;
+
+left:20px;
+
+bottom:20px;
+
+width:60px;
+
+height:60px;
+
+background:#D4AF37;
+
+color:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+font-size:28px;
+
+text-decoration:none;
+
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+
+transition:.3s;
+
+}
+
+.call-btn:hover{
+
+transform:scale(1.1);
+
+}
+.stats{
+
+padding:80px 8%;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+background:#10274f;
+
+text-align:center;
+
+}
+
+.stat{
+
+background:#071B3B;
+
+padding:30px;
+
+border-radius:15px;
+
+}
+
+.stat h2{
+
+font-size:45px;
+
+color:#D4AF37;
+
+}
+
+.stat p{
+
+color:white;
+
+margin-top:10px;
+
+}
+.card,
+.why-card,
+.testimonial{
+
+transition:.4s;
+
+}
+
+.card:hover,
+.why-card:hover,
+.testimonial:hover{
+
+transform:translateY(-10px);
+
+}
+.menu-btn{
+    display:none;
+    color:#D4AF37;
+    font-size:30px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.menu-btn{
+display:block;
+}
+
+nav{
+display:none;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:#071B3B;
+padding:20px;
+}
+
+nav.active{
+display:block;
+}
+
+nav ul{
+flex-direction:column;
+text-align:center;
+}
+
+nav ul li{
+margin:18px 0;
+}
+
+}
+.booking{
+
+padding:100px 8%;
+
+background:#071B3B;
+
+text-align:center;
+
+}
+
+.booking h4{
+
+color:#D4AF37;
+
+}
+
+.booking h2{
+
+color:white;
+
+margin:15px 0 40px;
+
+}
+
+.booking form{
+
+max-width:700px;
+
+margin:auto;
+
+display:grid;
+
+gap:20px;
+
+}
+
+.booking input,
+.booking select{
+
+padding:15px;
+
+border:none;
+
+border-radius:8px;
+
+font-size:16px;
+
+}
+
+.booking button{
+
+padding:15px;
+
+background:#D4AF37;
+
+border:none;
+
+font-size:18px;
+
+border-radius:40px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+.map iframe{
+
+width:100%;
+
+height:450px;
+
+border:none;
+
+}
+#loader{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:#071B3B;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:99999;
+
+}
+
+.spinner{
+
+width:70px;
+
+height:70px;
+
+border:6px solid #fff;
+
+border-top:6px solid #D4AF37;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+footer{
+
+border-top:2px solid #D4AF37;
+
+}
+
+    </style>
+
+</head>
+<body>
+    <div id="loader">
+
+<div class="spinner"></div>
+
+</div>
+<div class="stars"></div>
+<header>
+    <div class="menu-btn">
+    <i class="fa-solid fa-bars"></i>
+</div>
+
+  <div class="logo">
+    <img src="./logoo.png" alt="Divya Thakur Astrology Logo">
+    <span>Divya Thakur Astrology</span>
+</div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <h3>Welcome To</h3>
+
+        <h1>Divya Thakur Astrology</h1>
+
+        <p>
+            Discover your future with trusted Vedic Astrology.
+            Get accurate guidance for Love, Marriage, Career,
+            Business, Vastu, Numerology and Personalized Remedies.
+        </p>
+
+        <div class="buttons">
+
+            <a href="tel:9238093557" class="btn">Call Now</a>
+
+            <a href="https://wa.me/919238093557" class="btn2">WhatsApp</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about">
+
+    <div class="about-container">
+
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1518562180175-34a163b1a9a6?w=700" alt="Astrology">
+        </div>
+
+        <div class="about-content">
+
+            <h4>About Us</h4>
+
+            <h2>Welcome to Divya Thakur Astrology</h2>
+
+            <p>
+                Divya Thakur Astrology provides trusted online and offline
+                astrology consultations based on Vedic Astrology. Our goal is
+                to help people overcome life challenges through accurate
+                guidance and personalized remedies.
+            </p>
+
+            <p>
+                We offer solutions for love, marriage, career, business,
+                health, education, finance, Vastu, Numerology and Kundli
+                analysis with complete privacy and dedication.
+            </p>
+
+            <a href="tel:9238093557" class="about-btn">
+                Book Consultation
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= SERVICES ================= -->
+
+<section id="services" class="services">
+
+    <h4>Our Services</h4>
+
+    <h2>Astrology Services We Provide</h2>
+
+    <div class="service-container">
+
+        <div class="card">
+            <i class="fa-solid fa-star-and-crescent"></i>
+            <h3>Kundli Reading</h3>
+            <p>Detailed birth chart analysis with accurate predictions.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Love & Marriage</h3>
+            <p>Relationship guidance and compatibility solutions.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>Career Guidance</h3>
+            <p>Career, job and business astrology consultation.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-building"></i>
+            <h3>Business Astrology</h3>
+            <p>Grow your business with astrological guidance.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-house"></i>
+            <h3>Vastu Consultation</h3>
+            <p>Improve positive energy in your home and office.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-hashtag"></i>
+            <h3>Numerology</h3>
+            <p>Discover the power of numbers for success and happiness.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="why-us">
+
+    <h4>Why Choose Us</h4>
+
+    <h2>Why People Trust Divya Thakur Astrology</h2>
+
+    <div class="why-container">
+
+        <div class="why-card">
+            <i class="fa-solid fa-user-shield"></i>
+            <h3>100% Confidential</h3>
+            <p>Your personal information and consultation remain completely private.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-clock"></i>
+            <h3>Quick Consultation</h3>
+            <p>Get fast online and offline astrology consultation as per your convenience.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-award"></i>
+            <h3>Trusted Guidance</h3>
+            <p>Accurate astrology guidance with practical and personalized remedies.</p>
+        </div>
+
+        <div class="why-card">
+            <i class="fa-solid fa-globe"></i>
+            <h3>Worldwide Service</h3>
+            <p>Consult from anywhere through phone, WhatsApp, or online meetings.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials">
+
+    <h4>Testimonials</h4>
+
+    <h2>What Our Clients Say</h2>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial">
+            <p>
+                "Excellent astrology consultation. The career guidance helped me make the right decision."
+            </p>
+
+            <h3>- Rahul Sharma</h3>
+        </div>
+
+        <div class="testimonial">
+            <p>
+                "Very accurate Kundli reading and love marriage guidance. Highly recommended!"
+            </p>
+
+            <h3>- Priya Verma</h3>
+        </div>
+
+        <div class="testimonial">
+            <p>
+                "Professional and friendly consultation. The remedies were simple and effective."
+            </p>
+
+            <h3>- Aman Singh</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact">
+
+    <h4>Contact Us</h4>
+
+    <h2>Get In Touch</h2>
+
+    <div class="contact-box">
+
+        <p><i class="fa-solid fa-phone"></i> 92380 93557 / 86308 15628</p>
+
+        <p><i class="fa-solid fa-envelope"></i> divyathakur0397709@gmail.com</p>
+
+        <p><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</p>
+
+        <div class="contact-buttons">
+
+            <a href="tel:9238093557" class="btn">Call Now</a>
+
+            <a href="https://wa.me/919238093557" class="btn2">WhatsApp</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTACT FORM ================= -->
+
+<section class="contact-form">
+
+    <h4>Book Consultation</h4>
+
+    <h2>Send Your Query</h2>
+
+    <form>
+
+        <input type="text" placeholder="Your Name" required>
+
+        <input type="email" placeholder="Your Email" required>
+
+        <input type="tel" placeholder="Phone Number" required>
+
+        <textarea rows="6" placeholder="Write Your Problem"></textarea>
+
+        <button type="submit">Send Message</button>
+
+    </form>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="faq">
+
+<h4>Frequently Asked Questions</h4>
+
+<h2>Common Questions</h2>
+
+<div class="faq-box">
+
+<details>
+<summary>How can I book a consultation?</summary>
+<p>You can call or WhatsApp us to book an online or offline consultation.</p>
+</details>
+
+<details>
+<summary>Do you provide online consultation?</summary>
+<p>Yes, consultations are available via WhatsApp and Phone Call.</p>
+</details>
+
+<details>
+<summary>Is my information confidential?</summary>
+<p>Yes, all consultations remain completely private.</p>
+</details>
+
+<details>
+<summary>Which astrology services do you provide?</summary>
+<p>Kundli Reading, Love & Marriage, Career, Business, Numerology, Vastu and Personalized Remedies.</p>
+</details>
+
+</div>
+
+</section>
+<section class="stats">
+
+<div class="stat">
+<h2>1000+</h2>
+<p>Happy Clients</p>
+</div>
+
+<div class="stat">
+<h2>10+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="stat">
+<h2>24×7</h2>
+<p>Support</p>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<p>Confidential</p>
+</div>
+
+</section>
+<section class="booking">
+
+<h4>Book Appointment</h4>
+
+<h2>Schedule Your Consultation</h2>
+
+<form>
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="tel" placeholder="Phone Number" required>
+
+<input type="date" required>
+
+<select required>
+
+<option>Select Service</option>
+
+<option>Kundli Reading</option>
+
+<option>Career Guidance</option>
+
+<option>Love & Marriage</option>
+
+<option>Business Guidance</option>
+
+<option>Vastu Consultation</option>
+
+<option>Numerology</option>
+
+</select>
+
+<button>Book Now</button>
+
+</form>
+
+</section>
+<section class="map">
+
+<iframe
+src="https://www.google.com/maps?q=Uttarakhand,India&output=embed"
+loading="lazy">
+</iframe>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>Divya Thakur Astrology</h2>
+
+    <p>
+        Trusted Online & Offline Astrology Consultation
+    </p>
+
+    <div class="social">
+
+        <a href="https://www.facebook.com/divya.thakur.611814" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+
+        <a href="https://www.instagram.com/astrologerdivyathakur?igsh=MTA0YjlmM3U1MnlmdA==" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@DivyaThakur-123-ht" target="_blank">
+            <i class="fab fa-youtube"></i>
+        </a>
+
+    </div>
+
+    <p class="copyright">
+        © 2026 Divya Thakur Astrology. All Rights Reserved.
+    </p>
+
+</footer>
+<a href="tel:9238093557" class="call-btn">
+    <i class="fa-solid fa-phone"></i>
+</a>
+
+<!-- Floating WhatsApp -->
+
+<a href="https://wa.me/919238093557" class="whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<script src="./script.js"></script>
+</body>
+</html>

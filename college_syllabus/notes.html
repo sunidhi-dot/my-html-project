@@ -1,0 +1,227 @@
+HTML => HyperText Markup Language
+It is the standard language used to create web pages
+HTML describes the structure of a webpage using element(tags)
+
+// **** Basic Structure of an HTML Document ****//
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+</html> 
+
+// Explanation  
+
+<!DOCTYPE html> →  Declares HTML5 document
+<html>          →  Root element
+<head>          →  Contains metadata
+<title>         →  Displays page title in browser tab
+<body>          →  Contains visible webpage content
+
+// **** HTML Tags ****//
+// HTML uses OPENING and CLOSING tags
+
+<p></p> => paragraph
+<br>    => line break
+<hr>    => Horizontal line
+<img>   => image
+
+// Heading 
+
+<h1>Main Heading</h1>
+<h2>Sub Heading</h2>
+<h3>Smaller Heading</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+
+// Formatting Tags
+
+Tag	       =>    Purpose
+<b>        =>    Bold
+<strong>   =>    Important text
+<i>        =>	 Italic
+<em>       =>    Emphasized text
+<u>	       =>    Underline
+<mark>	   =>    Highlight
+<small>	   =>    Small text
+<sup>	   =>    Superscript
+<sub>	   =>    Subscript
+
+// *********** LISTS *********** //
+ 
+// Ordered List
+<ol>
+  <li></li>
+  <li></li>
+</ol>
+
+// Unordered List
+<ul>
+  <li></li>
+  <li></li>
+</ul>
+
+// Description List
+<dl>
+  <dt></dt>
+  <dd></dd>
+</dl>
+
+// Links
+<a href="https://example.com">Visit Website</a>
+<a href="https://example.com" target="_blank">Visit</a>
+
+// Images
+<img src="image.jpg" alt="Sample Image" width="300">
+
+// Attributes
+
+src             →  Image location
+alt             →  Alternative text
+width & height  →  Image size
+
+// Tables
+
+<table>
+<tr>
+<th></th>
+<th></th>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+// Tags
+
+<table>
+<tr>  →  Table row
+<th>  →  Header
+<td>  →  Data cell
+
+// Forms
+
+<form>
+
+<label>Name:</label>
+<input type="text">
+<br><br>
+<input type="submit">
+</form>
+
+// Common input types
+
+text
+password
+email
+number
+date
+radio
+checkbox
+file
+submit
+reset
+
+// Buttons
+<button></button>
+
+// Comments
+<!-- This is a comment -->
+
+// HTML Attributes
+<p style="color:red;">Hello</p>
+
+// Common attributes
+
+id
+class
+style
+href
+src
+alt
+title
+
+// Semantic HTML Tags
+
+Tag     	=>    Purpose
+<header>	=>    Header section
+<nav>	    =>    Navigation
+<section>	=>    Section
+<article>	=>    Independent content
+<aside>	    =>    Sidebar
+<footer>	=>    Footer
+
+// div (Block element)
+<div></div>
+
+// span (Inline element)
+<span></span>
+
+// Audio
+<audio controls>
+<source src="" type="">
+</audio>
+
+// Video
+<video  controls>
+<source src="" type="">
+</video>
+
+// Global Attributes
+<id></id>
+<class></class>
+
+// HTML Entities
+
+Entity	      =>    Output	       =>       Meaning
+&lt;	        =>      <	           =>       Less than
+&gt;	        =>      >	           =>       Greater than
+&amp;	        =>    	©	           =>       Copyright
+&nbsp;	      =>   (space)	       =>         Non-breaking space
+&quot;        =>    	"	           =>       Double quotation mark
+&apos;        =>    	'	           =>      Apostrophe
+
+// HTML5 Features
+
+Semantic elements (header, footer, article, etc.)
+Audio support
+Video support
+Canvas graphics
+SVG graphics
+Local storage
+Geolocation API
+Drag and Drop
+
+// Difference between HTML and HTML5
+
+HTML	                                                        HTML5
+Older version of HTML                                 	 Latest version of HTML.
+Limited multimedia support                            	 Built-in support for audio and video.
+No semantic elements like <header> and <footer>        	 Introduced semantic elements.
+Required external plugins (like Flash) for multimedia  	 No external plugins needed for multimedia.
+Limited APIs                                        	   Supports APIs like Geolocation, Canvas, Local Storage, Drag & Drop.
+
+// Difference between id and class
+
+id	                                       class
+Used for one unique element           Used for one or many elements.
+Must be unique in a page              Can be repeated.
+Written as id="name"	                Written as class="name"
+CSS selector uses #                   CSS selector uses ..
+// Example =>  <h1 id="title">Welcome</h1>
+               <p class="text">Paragraph 1</p>
+               <p class="text">Paragraph 2</p>
+
+// difference between <b> and <strong>
+
+<b>	                                            <strong>
+Makes text bold only.                  	Makes text bold and indicates importance.
+No semantic meaning.	                  Has semantic meaning.
+Used mainly for visual styling.         Used for important content.
+// Example => <p><b>Bold Text</b></p>
+<p><strong>Important Warning!</strong></p>
