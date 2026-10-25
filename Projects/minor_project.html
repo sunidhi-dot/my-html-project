@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Calendar</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#222;transition:.3s}
+button,input,textarea,select{font-family:inherit}
+
+header{background:#2563eb;color:#fff;padding:18px 30px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:25px;font-weight:bold}
+.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#digital-clock{background:#ffffff26;padding:9px 14px;border-radius:8px;font-weight:bold}
+.header-btn{border:0;padding:9px 14px;border-radius:8px;cursor:pointer;background:#fff;color:#2563eb;font-weight:bold}
+.header-btn:hover,.calendar-buttons button:hover,.tool-btn:hover{opacity:.85}
+
+.container{max-width:1200px;margin:25px auto;padding:0 15px}
+
+.search-section{position:relative;margin-bottom:20px}
+.search-box{width:100%;padding:13px 15px;border:1px solid #ddd;border-radius:10px;font-size:15px;outline:0;background:#fff}
+.search-box:focus{border-color:#2563eb}
+#search-results{display:none;position:absolute;width:100%;top:50px;left:0;background:#fff;border:1px solid #ddd;border-radius:10px;z-index:100;box-shadow:0 5px 20px #0000001f}
+.search-result-item{padding:12px 15px;border-bottom:1px solid #eee;cursor:pointer}
+.search-result-item:hover{background:#f3f4f6}
+.search-result-item strong{display:block}
+.search-result-item small,.summary-event small{color:#777}
+
+.calendar-card,.summary-card{background:#fff;border-radius:15px;padding:20px;box-shadow:0 5px 20px #00000014}
+.calendar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px;flex-wrap:wrap}
+.calendar-top h2{font-size:25px}
+.calendar-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.calendar-buttons button,.tool-btn{border:0;background:#2563eb;color:#fff;padding:9px 13px;border-radius:7px;cursor:pointer;font-weight:bold}
+#calendar-status{margin-bottom:15px;font-size:14px;color:#666}
+
+.weekdays,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.weekdays{margin-bottom:5px}
+.weekdays div{text-align:center;padding:10px;font-weight:bold;background:#eef2ff;color:#1e40af;border-radius:6px}
+
+.calendar-day{min-height:105px;border:1px solid #e5e7eb;border-radius:7px;padding:8px;cursor:pointer;background:#fff;transition:.2s;overflow:hidden}
+.calendar-day:hover{background:#f8fafc;border-color:#2563eb}
+.calendar-day.other-month{opacity:.35;cursor:default}
+.day-number{display:block;font-weight:bold;margin-bottom:5px}
+.calendar-day.today{border:2px solid #2563eb;background:#eff6ff}
+
+.holiday-name,.event-dot{font-size:11px;padding:3px 4px;border-radius:4px;margin-top:4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.holiday-name{background:#fee2e2;color:#b91c1c}
+.event-dot{background:#dbeafe;color:#1d4ed8}
+
+.calendar-day.holiday-day{background:#ffe4e6!important;border:2px solid #ef4444!important;color:#b91c1c}
+.calendar-day.holiday-day .day-number{color:#dc2626!important;font-weight:bold}
+.calendar-day.holiday-day:hover{background:#fecdd3!important}
+
+.summary-section{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.summary-card{border-radius:12px;box-shadow:0 5px 15px #0000000f}
+.summary-card h3{margin-bottom:12px}
+.summary-number{font-size:30px;font-weight:bold;color:#2563eb}
+.summary-event{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding:10px 0}
+.summary-event strong{display:block}
+.summary-actions{display:flex;gap:5px}
+.summary-actions button{border:0;cursor:pointer;background:#eef2ff;padding:6px;border-radius:5px}
+
+.tools-section{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+
+#event-modal{display:none;position:fixed;inset:0;background:#0000008c;z-index:1000;justify-content:center;align-items:center;padding:15px}
+#event-modal.show{display:flex}
+.modal-box{background:#fff;width:100%;max-width:500px;border-radius:15px;padding:22px;box-shadow:0 10px 40px #0003}
+.modal-box h2{margin-bottom:18px}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;margin-bottom:6px;font-weight:bold}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px;border:1px solid #ddd;border-radius:7px;outline:0}
+.form-group textarea{min-height:90px;resize:vertical}
+.modal-buttons{display:flex;justify-content:flex-end;gap:8px}
+.modal-buttons button{border:0;padding:10px 15px;border-radius:7px;cursor:pointer;font-weight:bold}
+.save-btn{background:#2563eb;color:#fff}
+.cancel-btn{background:#e5e7eb}
+
+body.dark-mode{background:#111827;color:#f9fafb}
+body.dark-mode .calendar-card,
+body.dark-mode .summary-card,
+body.dark-mode .modal-box,
+body.dark-mode .search-box{background:#1f2937;color:#fff}
+body.dark-mode .calendar-day{background:#1f2937;border-color:#374151}
+body.dark-mode .calendar-day:hover{background:#273449}
+body.dark-mode .calendar-day.today{background:#172554}
+body.dark-mode .weekdays div{background:#1e293b;color:#93c5fd}
+body.dark-mode .search-box{border-color:#374151}
+body.dark-mode #search-results{background:#1f2937;border-color:#374151}
+body.dark-mode .search-result-item{border-color:#374151}
+body.dark-mode .search-result-item:hover{background:#273449}
+body.dark-mode .summary-event{border-color:#374151}
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select{background:#111827;color:#fff;border-color:#374151}
+body.dark-mode .cancel-btn{background:#374151;color:#fff}
+
+@media(max-width:700px){
+ header{padding:15px}
+ .logo{font-size:21px}
+ .calendar-card{padding:10px}
+ .calendar-day{min-height:75px;padding:5px}
+ .weekdays div{padding:7px 2px;font-size:12px}
+ .day-number{font-size:13px}
+ .holiday-name,.event-dot{font-size:9px}
+ .summary-section{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">📅 Smart Calendar</div>
+<div class="header-right">
+<div id="digital-clock">00:00:00</div>
+<button class="header-btn" id="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="search-section">
+<input type="text" id="search-input" class="search-box" placeholder="🔍 Search events...">
+<div id="search-results"></div>
+</div>
+
+<div class="calendar-card">
+
+<div class="calendar-top">
+<h2 id="month-title">Calendar</h2>
+<div class="calendar-buttons">
+<button onclick="previousMonth()">◀ Previous</button>
+<button onclick="goToToday()">Today</button>
+<button onclick="nextMonth()">Next ▶</button>
+</div>
+</div>
+
+<div id="calendar-status">Loading...</div>
+
+<div class="weekdays">
+<div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+<div>Thu</div><div>Fri</div><div>Sat</div>
+</div>
+
+<div class="days" id="calendar-days"></div>
+</div>
+
+<div class="summary-section">
+
+<div class="summary-card">
+<h3>📊 Monthly Summary</h3>
+<p>Events this month</p>
+<div class="summary-number" id="event-count">0</div>
+<br>
+<p>Holidays this month</p>
+<div class="summary-number" id="holiday-count">0</div>
+</div>
+
+<div class="summary-card">
+<h3>📌 Events</h3>
+<div id="summary-list"><p>No events this month.</p></div>
+</div>
+
+</div>
+
+<div class="tools-section">
+<button class="tool-btn" onclick="openEventModal()">➕ Add Event</button>
+<button class="tool-btn" onclick="speakTodayDate()">🔊 Speak Today's Date</button>
+<button class="tool-btn" onclick="refreshHolidays()">🔄 Refresh Holidays</button>
+</div>
+
+</div>
+
+<div id="event-modal">
+<div class="modal-box">
+
+<h2>📅 Add / Edit Event</h2>
+
+<div class="form-group">
+<label>Date</label>
+<input type="date" id="event-date">
+</div>
+
+<div class="form-group">
+<label>Event Title</label>
+<input type="text" id="event-title" placeholder="Enter event title">
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea id="event-description" placeholder="Enter event description"></textarea>
+</div>
+
+<div class="form-group">
+<label>Reminder</label>
+<select id="event-reminder">
+<option value="none">No Reminder</option>
+<option value="1day">1 Day Before</option>
+<option value="1hour">1 Hour Before</option>
+<option value="same">On Event Day</option>
+</select>
+</div>
+
+<div class="modal-buttons">
+<button class="cancel-btn" onclick="closeEventModal()">Cancel</button>
+<button class="save-btn" onclick="saveEvent()">Save Event</button>
+</div>
+
+</div>
+</div>
+
+<script>
+
+let currentDate=new Date(),events=[],editingEventId=null;
+try{
+ const saved=JSON.parse(localStorage.getItem("calendarEvents")||"[]");
+ events=Array.isArray(saved)?saved:[];
+}catch(e){events=[]}
+
+let holidayData={year:null,list:[],source:""};
+
+const collegeHolidays2026=[
+["2026-01-26","Republic Day","General"],
+["2026-02-15","Mahashivratri","General"],
+["2026-03-03","Holika Dahan","General"],
+["2026-03-04","Holi","General"],
+["2026-03-19","Cheti Chand","General","Except Treasury / Sub-Treasuries / Banks"],
+["2026-03-21","Eid-ul-Fitr","General",null,true],
+["2026-03-26","Ram Navami","General"],
+["2026-03-31","Mahavir Jayanti","General"],
+["2026-04-03","Good Friday","General"],
+["2026-04-14","Dr. Bhimrao Ambedkar Jayanti","General"],
+["2026-05-01","Buddha Purnima","General"],
+["2026-05-27","Eid-ul-Zuha (Bakrid)","General",null,true],
+["2026-06-26","Muharram","General",null,true],
+["2026-07-16","Harela","General"],
+["2026-08-15","Independence Day","General"],
+["2026-08-26","Eid-e-Milad / Milad-un-Nabi","General",null,true],
+["2026-08-28","Raksha Bandhan","General"],
+["2026-09-04","Janmashtami","General"],
+["2026-09-17","Vishwakarma Puja","General","Except Treasury / Sub-Treasuries / Banks"],
+["2026-10-02","Mahatma Gandhi Jayanti","General"],
+["2026-10-20","Dussehra (Vijayadashami)","General"],
+["2026-10-26","Maharishi Valmiki Jayanti","General"],
+["2026-11-08","Deepawali","General"],
+["2026-11-10","Deepawali (Govardhan Puja)","General"],
+["2026-11-20","Igas-Bagwal","General"],
+["2026-11-24","Guru Nanak Jayanti","General"],
+["2026-11-24","Guru Teg Bahadur Martyrdom Day","General","Except Treasury / Sub-Treasuries / Banks"],
+["2026-12-25","Christmas Day","General"],
+
+["2026-01-14","Makar Sankranti","Local"],
+["2026-11-07","Deepawali (Narak Chaturdashi)","Local"],
+["2026-11-11","Bhaiya Dooj","Local"],
+
+["2026-01-01","New Year's Day","Restricted"],
+["2026-01-23","Basant Panchami","Restricted"],
+["2026-02-01","Guru Ravidas Jayanti","Restricted"],
+["2026-02-03","Shab-e-Barat","Restricted",null,true],
+["2026-03-13","Jumat-ul-Vida","Restricted",null,true],
+["2026-04-06","Easter Monday","Restricted"],
+["2026-04-14","Baisakhi","Restricted"],
+["2026-05-03","Veer Kesari Chand Martyrdom Day","Restricted"],
+["2026-08-04","Chehlum","Restricted",null,true],
+["2026-09-25","Anant Chaturdashi","Restricted"],
+["2026-10-11","Maharaja Agrasen Jayanti","Restricted"],
+["2026-10-20","Dussehra (Maha Navami)","Restricted"],
+["2026-11-15","Chhath Puja","Restricted"],
+["2026-12-24","Christmas Eve","Restricted"]
+].map(x=>({date:x[0],name:x[1],type:x[2],...(x[3]&&{note:x[3]}),...(x[4]&&{moonDependent:true})}));
+
+function formatDate(date){
+ return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+}
+
+function displayDate(s){
+ return new Date(s+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"});
+}
+
+function getHolidayList(year){
+ return year===2026?collegeHolidays2026:holidayData.list||[];
+}
+
+function getHoliday(dateString){
+ return getHolidayList(currentDate.getFullYear()).find(h=>h.date===dateString);
+}
+
+async function loadHolidaysForYear(year){
+
+ if(year===2026){
+  holidayData={year,list:collegeHolidays2026,source:"🏫 College Holiday List"};
+  return;
+ }
+
+ const cacheKey=`holidayCache_${year}`;
+ let cached=null;
+
+ try{cached=JSON.parse(localStorage.getItem(cacheKey))}catch(e){}
+
+ if(cached&&cached.timestamp&&Date.now()-cached.timestamp<86400000){
+  holidayData={year,list:cached.list||[],source:"🌐 Online Holidays (Cached)"};
+  return;
+ }
+
+ try{
+  const response=await fetch(`https://date.nager.at/api/v3/PublicHolidays/${year}/IN`);
+  if(!response.ok)throw new Error("Holiday API failed");
+
+  const list=(await response.json()).map(h=>({
+   date:h.date,
+   name:h.localName||h.name,
+   type:"India",
+   source:"Nager.Date"
+  }));
+
+  holidayData={year,list,source:"🌐 Online - India"};
+
+  localStorage.setItem(cacheKey,JSON.stringify({
+   timestamp:Date.now(),list
+  }));
+
+ }catch(error){
+
+  console.error("Holiday API Error:",error);
+
+  holidayData={
+   year,
+   list:cached?.list||[],
+   source:cached?.list?"🌐 Online Holidays - Old Cache":"⚠️ Holiday API Failed"
+  };
+ }
+}
+
+async function renderCalendar(){
+
+ const year=currentDate.getFullYear();
+ const month=currentDate.getMonth();
+ const calendarDays=document.getElementById("calendar-days");
+ if(!calendarDays)return;
+
+ if(holidayData.year!==year)await loadHolidaysForYear(year);
+
+ calendarDays.innerHTML="";
+
+ const firstDay=new Date(year,month,1).getDay();
+ const totalDays=new Date(year,month+1,0).getDate();
+ const previousMonthDays=new Date(year,month,0).getDate();
+
+ for(let i=firstDay-1;i>=0;i--){
+  const cell=document.createElement("div");
+  cell.className="calendar-day other-month";
+  cell.innerHTML=`<span>${previousMonthDays-i}</span>`;
+  calendarDays.appendChild(cell);
+ }
+
+ const today=new Date();
+
+ for(let day=1;day<=totalDays;day++){
+
+  const cell=document.createElement("div");
+  cell.className="calendar-day";
+
+  const dateString=`${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+  if(day===today.getDate()&&month===today.getMonth()&&year===today.getFullYear())
+   cell.classList.add("today");
+
+  const holiday=getHoliday(dateString);
+  if(holiday)cell.classList.add("holiday-day");
+
+  const dayEvents=events.filter(e=>e.date===dateString);
+
+  let html=`<span class="day-number">${day}</span>`;
+
+  if(holiday)
+   html+=`<div class="holiday-name" title="${holiday.name}">🎉 ${holiday.name}</div>`;
+
+  dayEvents.forEach(e=>{
+   html+=`<div class="event-dot" title="${e.title}">📌 ${e.title}</div>`;
+  });
+
+  cell.innerHTML=html;
+  cell.addEventListener("click",()=>openEventModal(dateString));
+  calendarDays.appendChild(cell);
+ }
+
+ const remaining=(firstDay+totalDays)%7===0?0:7-(firstDay+totalDays)%7;
+
+ for(let day=1;day<=remaining;day++){
+  const cell=document.createElement("div");
+  cell.className="calendar-day other-month";
+  cell.innerHTML=`<span>${day}</span>`;
+  calendarDays.appendChild(cell);
+ }
+
+ updateMonthHeading();
+ updateMonthlySummary();
+ updateStatus();
+}
+
+function updateMonthHeading(){
+ const title=document.getElementById("month-title");
+ if(title)title.textContent=currentDate.toLocaleDateString("en-IN",{month:"long",year:"numeric"});
+}
+
+function previousMonth(){
+ currentDate.setMonth(currentDate.getMonth()-1);
+ holidayData.year=null;
+ renderCalendar();
+}
+
+function nextMonth(){
+ currentDate.setMonth(currentDate.getMonth()+1);
+ holidayData.year=null;
+ renderCalendar();
+}
+
+function goToToday(){
+ currentDate=new Date();
+ holidayData.year=null;
+ renderCalendar();
+}
+
+function openEventModal(selectedDate=null,eventId=null){
+
+ const modal=document.getElementById("event-modal");
+ if(!modal)return;
+
+ editingEventId=eventId;
+
+ const dateInput=document.getElementById("event-date");
+ const titleInput=document.getElementById("event-title");
+ const descriptionInput=document.getElementById("event-description");
+ const reminderInput=document.getElementById("event-reminder");
+
+ if(eventId){
+
+  const event=events.find(e=>e.id===eventId);
+  if(!event)return;
+
+  dateInput.value=event.date;
+  titleInput.value=event.title;
+  descriptionInput.value=event.description||"";
+  reminderInput.value=event.reminder||"none";
+
+ }else{
+
+  dateInput.value=selectedDate||formatDate(new Date());
+  titleInput.value="";
+  descriptionInput.value="";
+  reminderInput.value="none";
+ }
+
+ modal.classList.add("show");
+ titleInput.focus();
+}
+
+function closeEventModal(){
+ const modal=document.getElementById("event-modal");
+ if(modal)modal.classList.remove("show");
+ editingEventId=null;
+}
+
+function saveEvent(){
+
+ const date=document.getElementById("event-date").value.trim();
+ const title=document.getElementById("event-title").value.trim();
+ const description=document.getElementById("event-description").value.trim();
+ const reminder=document.getElementById("event-reminder").value;
+
+ if(!date)return alert("Please select a date.");
+ if(!title)return alert("Please enter event title.");
+
+ if(editingEventId){
+
+  const index=events.findIndex(e=>e.id===editingEventId);
+
+  if(index!==-1)
+   events[index]={...events[index],date,title,description,reminder};
+
+ }else{
+
+  events.push({
+   id:Date.now().toString(),
+   date,title,description,reminder,
+   createdAt:new Date().toISOString()
+  });
+ }
+
+ localStorage.setItem("calendarEvents",JSON.stringify(events));
+ closeEventModal();
+ renderCalendar();
+ updateMonthlySummary();
+ scheduleReminder(date,title,reminder);
+}
+
+function deleteEvent(eventId){
+
+ const event=events.find(e=>e.id===eventId);
+ if(!event)return;
+
+ if(!confirm(`Delete "${event.title}"?`))return;
+
+ events=events.filter(e=>e.id!==eventId);
+ localStorage.setItem("calendarEvents",JSON.stringify(events));
+
+ renderCalendar();
+ updateMonthlySummary();
+}
+
+function getCurrentMonthEvents(){
+
+ const prefix=`${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,"0")}`;
+
+ return events.filter(e=>e.date.startsWith(prefix));
+}
+
+function updateMonthlySummary(){
+
+ const monthEvents=getCurrentMonthEvents();
+ const year=currentDate.getFullYear();
+ const month=String(currentDate.getMonth()+1).padStart(2,"0");
+
+ const monthHolidays=getHolidayList(year).filter(h=>h.date.startsWith(`${year}-${month}`));
+
+ document.getElementById("event-count").textContent=monthEvents.length;
+ document.getElementById("holiday-count").textContent=monthHolidays.length;
+
+ const summaryList=document.getElementById("summary-list");
+ summaryList.innerHTML="";
+
+ if(!monthEvents.length){
+  summaryList.innerHTML="<p>No events this month.</p>";
+  return;
+ }
+
+ monthEvents.sort((a,b)=>a.date.localeCompare(b.date));
+
+ monthEvents.forEach(event=>{
+
+  const item=document.createElement("div");
+  item.className="summary-event";
+
+  item.innerHTML=`
+  <div>
+   <strong>${event.title}</strong>
+   <small>${displayDate(event.date)}</small>
+  </div>
+  <div class="summary-actions">
+   <button onclick="openEventModal('${event.date}','${event.id}')">✏️</button>
+   <button onclick="deleteEvent('${event.id}')">🗑️</button>
+  </div>`;
+
+  summaryList.appendChild(item);
+ });
+}
+
+function searchEvents(){
+
+ const input=document.getElementById("search-input");
+ const results=document.getElementById("search-results");
+ const query=input.value.trim().toLowerCase();
+
+ results.innerHTML="";
+
+ if(!query){
+  results.style.display="none";
+  return;
+ }
+
+ const matches=events.filter(e=>
+  e.title.toLowerCase().includes(query)||
+  (e.description||"").toLowerCase().includes(query)||
+  e.date.includes(query)
+ );
+
+ if(!matches.length){
+  results.innerHTML="<p style='padding:12px'>No event found.</p>";
+  results.style.display="block";
+  return;
+ }
+
+ matches.forEach(event=>{
+
+  const item=document.createElement("div");
+  item.className="search-result-item";
+
+  item.innerHTML=`
+  <strong>${event.title}</strong>
+  <small>${displayDate(event.date)}</small>`;
+
+  item.onclick=()=>{
+
+   const parts=event.date.split("-");
+
+   currentDate=new Date(Number(parts[0]),Number(parts[1])-1,1);
+   holidayData.year=null;
+
+   renderCalendar();
+
+   results.style.display="none";
+   input.value="";
+  };
+
+  results.appendChild(item);
+ });
+
+ results.style.display="block";
+}
+
+function updateClock(){
+
+ const clock=document.getElementById("digital-clock");
+ if(!clock)return;
+
+ const now=new Date();
+
+ let hours=now.getHours();
+ const minutes=String(now.getMinutes()).padStart(2,"0");
+ const seconds=String(now.getSeconds()).padStart(2,"0");
+ const ampm=hours>=12?"PM":"AM";
+
+ hours=hours%12||12;
+
+ clock.textContent=`${String(hours).padStart(2,"0")}:${minutes}:${seconds} ${ampm}`;
+}
+
+function speakTodayDate(){
+
+ if(!("speechSynthesis" in window)){
+  alert("Voice feature is not supported in this browser.");
+  return;
+ }
+
+ const today=new Date();
+
+ const dateText=today.toLocaleDateString("en-IN",{
+  weekday:"long",
+  day:"numeric",
+  month:"long",
+  year:"numeric"
+ });
+
+ let message=`Today is ${dateText}.`;
+
+ const holiday=getHoliday(formatDate(today));
+
+ if(holiday)message+=` Today is ${holiday.name}.`;
+
+ const speech=new SpeechSynthesisUtterance(message);
+
+ speech.lang="en-IN";
+ speech.rate=.9;
+ speech.pitch=1;
+
+ window.speechSynthesis.cancel();
+ window.speechSynthesis.speak(speech);
+}
+
+function scheduleReminder(date,title,reminder){
+
+ if(!reminder||reminder==="none")return;
+
+ if("Notification" in window&&Notification.permission==="default")
+  Notification.requestPermission();
+
+ const reminderDate=new Date(date+"T09:00:00");
+
+ let delay=reminderDate.getTime()-Date.now();
+
+ if(reminder==="1day")delay-=86400000;
+ else if(reminder==="1hour")delay-=3600000;
+
+ if(delay<=0)return;
+
+ setTimeout(()=>showReminder(title),delay);
+}
+
+function showReminder(title){
+
+ if("Notification" in window&&Notification.permission==="granted")
+  new Notification("Calendar Reminder",{body:`Reminder: ${title}`});
+ else alert(`Reminder: ${title}`);
+}
+
+function toggleTheme(){
+
+ document.body.classList.toggle("dark-mode");
+
+ const dark=document.body.classList.contains("dark-mode");
+
+ localStorage.setItem("calendarTheme",dark?"dark":"light");
+ updateThemeButton();
+}
+
+function updateThemeButton(){
+
+ const button=document.getElementById("theme-toggle");
+ if(!button)return;
+
+ button.textContent=document.body.classList.contains("dark-mode")?"☀️ Light":"🌙 Dark";
+}
+
+function loadTheme(){
+
+ if(localStorage.getItem("calendarTheme")==="dark")
+  document.body.classList.add("dark-mode");
+
+ updateThemeButton();
+}
+
+async function refreshHolidays(){
+
+ const year=currentDate.getFullYear();
+
+ if(year===2026){
+
+  holidayData={
+   year:2026,
+   list:collegeHolidays2026,
+   source:"College Holiday List"
+  };
+
+  renderCalendar();
+  return;
+ }
+
+ localStorage.removeItem(`holidayCache_${year}`);
+ holidayData.year=null;
+
+ await loadHolidaysForYear(year);
+ await renderCalendar();
+}
+
+function updateStatus(){
+
+ const status=document.getElementById("calendar-status");
+ if(!status)return;
+
+ const year=currentDate.getFullYear();
+
+ if(year === 2026)
+
+    status.textContent =
+        "📚 2026 College Holiday List";
+
+else if(holidayData.list.length)
+
+    status.textContent =
+        "🌐 Online Holidays: India";
+
+else
+
+    status.textContent =
+        "⚠️ Online holidays unavailable";
+
+}
+
+window.addEventListener("click",e=>{
+
+ const modal=document.getElementById("event-modal");
+
+ if(modal&&e.target===modal)
+  closeEventModal();
+});
+
+document.addEventListener("keydown",e=>{
+
+ if(e.key==="Escape")closeEventModal();
+
+ if(e.key==="ArrowLeft"&&!e.target.matches("input,textarea,select"))
+  previousMonth();
+
+ if(e.key==="ArrowRight"&&!e.target.matches("input,textarea,select"))
+  nextMonth();
+});
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+ loadTheme();
+
+ updateClock();
+ setInterval(updateClock,1000);
+
+ const searchInput=document.getElementById("search-input");
+
+ if(searchInput)
+  searchInput.addEventListener("input",searchEvents);
+
+ renderCalendar();
+});
+
+</script>
+
+</body>
+</html>
